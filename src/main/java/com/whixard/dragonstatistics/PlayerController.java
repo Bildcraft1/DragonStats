@@ -15,7 +15,7 @@ public class PlayerController {
         this.statisticsRepository = statisticsRepository;
     }
 
-    @GetMapping
+    @PostMapping
     public void players(@RequestParam(value = "players", defaultValue = "0") int players) {
         statisticsRepository.save(new TimeStamp(UUID.randomUUID(), Instant.now(), players));
     }
