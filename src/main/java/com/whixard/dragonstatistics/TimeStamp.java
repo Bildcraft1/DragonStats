@@ -1,4 +1,4 @@
-package com.whixad.dragonstatistics;
+package com.whixard.dragonstatistics;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

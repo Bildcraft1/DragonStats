@@ -1,4 +1,4 @@
-package com.whixad.dragonstatistics;
+package com.whixard.dragonstatistics;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,6 +8,6 @@ public class Controller {
 
         @GetMapping("/")
         public String index() {
-            return "tuo padre è morto e tua madre è un uomo";
+            return "<h1>DragonStatistcs API</h1>";
         }
 }

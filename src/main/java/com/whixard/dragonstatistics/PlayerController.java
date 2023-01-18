@@ -1,4 +1,4 @@
-package com.whixad.dragonstatistics;
+package com.whixard.dragonstatistics;
 
 import org.springframework.web.bind.annotation.*;
 

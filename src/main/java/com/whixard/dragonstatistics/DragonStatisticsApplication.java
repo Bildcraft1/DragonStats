@@ -1,4 +1,4 @@
-package com.whixad.dragonstatistics;
+package com.whixard.dragonstatistics;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;

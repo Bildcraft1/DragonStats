@@ -1,4 +1,4 @@
-package com.whixad.dragonstatistics;
+package com.whixard.dragonstatistics;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

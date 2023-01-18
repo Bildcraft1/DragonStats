@@ -1,4 +1,4 @@
-package com.whixad.dragonstatistics;
+package com.whixard.dragonstatistics;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
