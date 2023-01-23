@@ -3,8 +3,12 @@ package com.whixard.dragonstatistics;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/api/v1/players")
 public class PlayerController {
@@ -25,13 +29,19 @@ public class PlayerController {
         return statisticsRepository.findByTimeBetween(Instant.now().minusSeconds(10800), Instant.now());
     }
 
-    @GetMapping("/day")
-    public List<TimeStamp> dayPlayers() {
-        return statisticsRepository.findByTimeBetween(Instant.now().minusSeconds(86400), Instant.now());
+    @GetMapping("/hourly")
+    public List<PlayerCount> dayPlayersSamples(@RequestParam long time) {
+        return statisticsRepository.findByTimeBetween(Instant.now().minusSeconds(time), Instant.now()).stream()
+                .collect(Collectors.groupingBy(t -> t.getTime().truncatedTo(ChronoUnit.HOURS)))
+                .entrySet()
+                .stream()
+                .map(e -> new PlayerCount(e.getKey(), e.getValue().stream().mapToDouble(TimeStamp::getPlayer).average().orElse(0D)))
+                .sorted(Comparator.comparingLong(p -> p.time().getEpochSecond()))
+                .toList();
     }
 
-    @GetMapping("/all")
-    public List<TimeStamp> allPlayers() {
-        return statisticsRepository.findAll();
+    @GetMapping("/last")
+    public int allPlayers() {
+        return statisticsRepository.findAll().stream().findAny().map(TimeStamp::getPlayer).orElse(0);
     }
 }
